@@ -1,4 +1,4 @@
-import { obtenerDeStorage} from './js/util.js/localStorage.js';
+import { obtenerDeStorage,guardarEnStorage} from './js/util.js/localStorage.js';
 import { reconstruirClienteConCuentas } from './js/util.js/restaurar.js';
 
 let intentos =0;
@@ -22,9 +22,13 @@ document.getElementById("loginForm").addEventListener("submit",function(e){
     const clientes =clientesJSON.map(reconstruirClienteConCuentas);
 
     const cliente = clientes.find(x => x.usuario === usuario && x.password === password);
+    
+    guardarEnStorage("login", cliente);
+
+
 
     if (cliente) {
-        sessionStorage.setItem("clienteActivo", JSON.stringify(cliente));
+       /*  sessionStorage.setItem("clienteActivo", JSON.stringify(cliente)); */
 
         // Mostrar mensaje de bienvenida
         document.getElementById("mensajeBienvenida").textContent =
@@ -34,7 +38,7 @@ document.getElementById("loginForm").addEventListener("submit",function(e){
 
         // Redirigir después de 3 segundos
         setTimeout(() => {
-        window.location.href = "menu.html";
+        window.location.href = "menuPpal.html";
         }, 3000);
 
     }else{
