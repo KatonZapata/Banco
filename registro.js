@@ -1,9 +1,9 @@
 //importacion de clases, metodos y funciones
-import { Cliente } from './clases.js/Cliente.js';
-import { CuentaAhorros } from './clases.js/CuentaAhorros.js';
-import { CuentaCorriente } from './clases.js/CuentaCorriente.js';
-import { obtenerDeStorage, guardarEnStorage } from './utils.js/storage.js';
-import { reconstruirClienteConCuentas } from './utils.js/restaurar.js';
+import { Cliente } from './js/clases.js/Cliente.js';
+import { CuentaAhorros } from './js/clases.js/CuentaAhorros.js';
+import { CuentaCorriente } from './js/clases.js/CuentaCoriente.js';
+import { obtenerDeStorage, guardarEnStorage } from './js/util.js/localStorage.js';
+import { reconstruirClienteConCuentas } from './js/util.js/restaurar.js';
 
 //manipulacion del DOM
 document.getElementById("registroForm").addEventListener("submit", function (e) {
