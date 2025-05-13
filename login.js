@@ -28,7 +28,9 @@ document.getElementById("loginForm").addEventListener("submit",function(e){
 
 
     if (cliente) {
+
        /*  sessionStorage.setItem("clienteActivo", JSON.stringify(cliente)); */
+
 
         // Mostrar mensaje de bienvenida
         document.getElementById("mensajeBienvenida").textContent =
@@ -38,7 +40,9 @@ document.getElementById("loginForm").addEventListener("submit",function(e){
 
         // Redirigir después de 3 segundos
         setTimeout(() => {
-        window.location.href = "menuPpal.html";
+
+        window.location.href = "./menuPpal.html";
+
         }, 3000);
 
     }else{
