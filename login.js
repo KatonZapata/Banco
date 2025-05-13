@@ -24,7 +24,7 @@ document.getElementById("loginForm").addEventListener("submit",function(e){
     const cliente = clientes.find(x => x.usuario === usuario && x.password === password);
 
     if (cliente) {
-        //sessionStorage.setItem("clienteActivo", JSON.stringify(cliente));
+        /* sessionStorage.setItem("clienteActivo", JSON.stringify(cliente)); */
 
         // Mostrar mensaje de bienvenida
         document.getElementById("mensajeBienvenida").textContent =
