@@ -1,0 +1,94 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Segoe UI", sans-serif;
+    background: linear-gradient(135deg, #2c3e50, #3498db);
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    min-height: 100vh;
+}
+
+.menu {
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    padding: 30px 40px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.menu h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #00ffe1;
+}
+
+.menu form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.menu input[type="button"] {
+    width: 100%;
+    padding: 14px;
+    background-color: #00ffe1; 
+    color: #000000;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.menu input[type="button"]:hover {
+    background-color: #00cfc9;
+}
+
+#btnCerrar {
+    margin-top: 30px;
+    width: 60%; 
+    max-width: 200px;
+    align-self: center;
+    padding: 10px; 
+    font-size: 14px;
+}
+
+.menu #resultado {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #ffffff;
+    text-align: center;
+}
+
+@media (max-width: 480px) {
+    .menu {
+        padding: 20px;
+    }
+
+    .menu input[type="button"]:not(#btnCerrar) {
+        font-size: 14px;
+        padding: 12px;
+    }
+     .menu h2 {
+        font-size: 20px;
+        margin-bottom: 20px;
+     }
+     #btnCerrar {
+        width: 80%;
+        max-width: none;
+        margin-top: 25px;
+        font-size: 13px;
+        padding: 8px;
+     }
+}
