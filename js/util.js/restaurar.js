@@ -1,7 +1,7 @@
-import { Cliente } from '../clases/Cliente.js';
-import { Cuenta } from '../clases/Cuenta.js';
-import { CuentaAhorros } from '../clases/CuentaAhorros.js';
-import { CuentaCorriente } from '../clases/CuentaCorriente.js';
+import { Cliente } from '../clases.js/Cliente.js';
+import { Cuenta } from '../clases.js/Cuenta.js';
+import { CuentaAhorros } from '../clases.js/CuentaAhorros.js';
+import { CuentaCorriente } from '../clases.js/CuentaCoriente.js';
 
 export function reconstruirCuenta(jsonCuenta) {
   let cuenta;
