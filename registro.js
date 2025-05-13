@@ -1,9 +1,9 @@
 //importacion de clases, metodos y funciones
-import { Cliente } from './clases/Cliente.js';
-import { CuentaAhorros } from './clases/CuentaAhorros.js';
-import { CuentaCorriente } from './clases/CuentaCorriente.js';
-import { obtenerDeStorage, guardarEnStorage } from './utils/storage.js';
-import { reconstruirClienteConCuentas } from './utils/restaurar.js';
+import { Cliente } from './clases.js/Cliente.js';
+import { CuentaAhorros } from './clases.js/CuentaAhorros.js';
+import { CuentaCorriente } from './clases.js/CuentaCorriente.js';
+import { obtenerDeStorage, guardarEnStorage } from './utils.js/storage.js';
+import { reconstruirClienteConCuentas } from './utils.js/restaurar.js';
 
 //manipulacion del DOM
 document.getElementById("registroForm").addEventListener("submit", function (e) {
@@ -61,8 +61,22 @@ document.getElementById("registroForm").addEventListener("submit", function (e) 
   guardarEnStorage("clientes", clientes);
   guardarEnStorage("cuentas", cuentas);
 
-  alert(`Registro exitoso.\nNúmero de cuenta: ${numeroCuenta}`);
+  // Mostrar modal de éxito
+document.getElementById("mensajeRegistro").textContent =
+  `Tu número de cuenta es ${numeroCuenta}. ¡Bienvenido/a al sistema!`;
+
+document.getElementById("registroModal").classList.remove("oculto");
+
+// Ocultar el formulario temporalmente (opcional)
+document.getElementById("registroForm").style.display = "none";
+
+// Reiniciar formulario y mostrar de nuevo luego de 4 segundos
+setTimeout(() => {
   document.getElementById("registroForm").reset();
+  document.getElementById("registroForm").style.display = "block";
+  document.getElementById("registroModal").classList.add("oculto");
+}, 4000);
+window.location.href = "./html/index.html"
 });
 //funcion de generacion de numeros de cuenta de manera aleatoria
 function generarNumeroCuentaUnico(cuentasExistentes) {

@@ -93,4 +93,87 @@ button:hover {
     font-size: 14px;
   }
 }
-  
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal-contenido {
+  background-color: #ffffff;
+  color: #2c3e50;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  min-width: 300px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.oculto {
+  display: none;
+}
+.inicio-container {
+  text-align: center;
+  color: #ffffff;
+  padding: 60px 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.bienvenida {
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+  animation: fadeInDown 1s ease-out;
+}
+
+.bienvenida span {
+  color: #00ffe1;
+  font-weight: bold;
+}
+
+.slogan {
+  font-size: 1.2rem;
+  margin-bottom: 40px;
+  animation: fadeIn 2s ease-in;
+}
+
+.botones-inicio {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.btn-accion {
+  text-decoration: none;
+  background-color: #00ffe1;
+  color: #2c3e50;
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.btn-accion:hover {
+  background-color: #00cfc9;
+  transform: scale(1.05);
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
