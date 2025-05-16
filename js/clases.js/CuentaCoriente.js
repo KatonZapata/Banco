@@ -3,6 +3,7 @@ import { Cuenta } from './Cuenta.js';
 export class CuentaCorriente extends Cuenta {
   constructor(numeroCuenta, saldoInicial = 0) {
     super(numeroCuenta, saldoInicial);
+    this.tipoCuenta = "Corriente";
     this.limiteSobregiro = 500000;
   }
 

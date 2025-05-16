@@ -1,5 +1,6 @@
 import { obtenerDeStorage} from './js/util.js/localStorage.js';
 import { reconstruirClienteConCuentas } from './js/util.js/restaurar.js';
+import { guardarSessionStorage} from './js/util.js/sessionStorage.js';
 
 let intentos =0;
 const MAX_INTENTOS = 3;
@@ -22,14 +23,17 @@ document.getElementById("loginForm").addEventListener("submit",function(e){
     const clientes =clientesJSON.map(reconstruirClienteConCuentas);
 
     const cliente = clientes.find(x => x.usuario === usuario && x.password === password);
+    
+   
+
+
 
     if (cliente) {
-        const clienteSinCircular = JSON.parse(JSON.stringify(cliente, (key, value) => {
-        if (key === 'propietario') return undefined;
-        return value;
-        }));
 
-        sessionStorage.setItem("clienteActivo", JSON.stringify(clienteSinCircular));
+    guardarSessionStorage("logeo",cliente);
+        
+      /*  guardarEnStorage("login", cliente); */
+
 
         // Mostrar mensaje de bienvenida
         document.getElementById("mensajeBienvenida").textContent =
@@ -39,7 +43,9 @@ document.getElementById("loginForm").addEventListener("submit",function(e){
 
         // Redirigir después de 3 segundos
         setTimeout(() => {
+
         window.location.href = "./menuPpal.html";
+
         }, 3000);
 
     }else{
