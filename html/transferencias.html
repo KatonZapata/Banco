@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Transferencias - CheckMyBank</title>
+  <link rel="stylesheet" href="../css/transferir.css">
+</head>
+<body>
+  <div class="consignar">
+    <h2>Transferencias entre cuentas</h2>
+    <form id="registroForm">
+      <input type="text" id="cuentaOrigen" placeholder="Cuenta Origen" required />
+      <input type="text" id="cuentaDestino" placeholder="Cuenta Destino" required />
+      <input type="text" id="valor" placeholder="Cantidad a Transferir" required />
+      <button type="submit">Transferir</button>
+    </form>
+    <button type="submit" id="btnRegresar" >Regresar</button>
+
+    <div id="registroModal" class="modal oculto">
+      <div class="modal-contenido">
+        <h3>¡Transferencia exitosa!</h3>
+        <p id="mensajeRegistro"></p>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/transferencias.js"></script>
+</body>
+</html>
