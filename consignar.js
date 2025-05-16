@@ -28,6 +28,29 @@ document.getElementById("monto").addEventListener("submit", function (e) {
   } else {
     alert("Ingrese un monto válido.");
   }
+
+    // Mostrar modal de éxito
+document.getElementById("mensajeRegistro").textContent =
+  `Tu consignación por valor de: ${valor} Ha sido exitosa `;
+
+document.getElementById("registroModal").classList.remove("oculto");
+
+// Ocultar el formulario temporalmente (opcional)
+document.getElementById("monto").style.display = "none";
+
+// Reiniciar formulario y mostrar de nuevo luego de 4 segundos
+setTimeout(() => {
+document.getElementById("monto").reset();
+document.getElementById("monto").style.display = "block";
+document.getElementById("registroModal").classList.add("oculto");
+window.location.href = "/html/menuPpal.html";
+}, 1000);
+
 });
+
+document.getElementById('btnRegresar').addEventListener('click', function(){
+
+    window.location.href = '/html/menuPpal.html'
+})
 
 

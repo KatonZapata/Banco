@@ -11,12 +11,18 @@
         <h2>Monto a Consignar</h2>
         <form id="monto">
             <input type="text" id="valor" required placeholder="Ingresa el valor a consignar"/>
-
             <button id="btnEnviar" type="submit">Enviar Dinero</button>
-
-            <button id="btnRegresar" type="button">Regresar</button>
- </form>
+            <button id="btnRegresar" type="submit">Regresar</button>
+    </form>
     </div>
+        
+        <div id="registroModal" class="modal oculto">
+        <div class="modal-contenido">
+        <h3>Consignacion exitosa!</h3>
+        <p id="mensajeRegistro"></p>
+      </div>
+    </div>
+
 
     <script type="module" src="/consignar.js"></script>
 
