@@ -15,6 +15,7 @@ document.getElementById("monto").addEventListener("submit", function (e) {
   if (!isNaN(valor) && valor > 0) {
     cuenta.realizarConsignacion(valor);
      guardarEnStorage("cuentas", cuenta);
+     guardarEnStorage("clientes", logeado);
 
     // 🔧 Quitar referencia circular antes de guardar
     logeado.cuentas.forEach(c => delete c.propietario);
