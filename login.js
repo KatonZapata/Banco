@@ -48,6 +48,7 @@ document.getElementById("loginForm").addEventListener("submit",function(e){
 
         }, 3000);
 
+        //lOGUIN DE FALLO
     }else{
         intentos ++
         if (intentos >= MAX_INTENTOS) {
