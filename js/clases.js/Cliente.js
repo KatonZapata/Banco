@@ -10,7 +10,7 @@ export class Cliente {
   }
 
   agregarCuenta(cuenta) {
-    this.cuentas.push(cuenta);
+    this.cuentas.push (cuenta);
     cuenta.propietario = this;
   }
 }
