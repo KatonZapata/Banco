@@ -1,5 +1,6 @@
-import { obtenerDeStorage,guardarEnStorage} from './js/util.js/localStorage.js';
+import { obtenerDeStorage} from './js/util.js/localStorage.js';
 import { reconstruirClienteConCuentas } from './js/util.js/restaurar.js';
+import { guardarSessionStorage} from './js/util.js/sessionStorage.js';
 
 let intentos =0;
 const MAX_INTENTOS = 3;
@@ -23,15 +24,15 @@ document.getElementById("loginForm").addEventListener("submit",function(e){
 
     const cliente = clientes.find(x => x.usuario === usuario && x.password === password);
     
-    guardarEnStorage("login", cliente);
+   
 
 
 
     if (cliente) {
 
-       /*  sessionStorage.setItem("clienteActivo", JSON.stringify(cliente)); */
-        // GUARDA EL NOMBRE DE USUARIO LOGGEADO EN LOCALSTORAGE ***
-        localStorage.setItem('loggedInUsername', cliente.usuario); // Guardamos el nombre de usuario con la clave esperada por retiro.js
+    guardarSessionStorage("logeo",cliente);
+        
+      /*  guardarEnStorage("login", cliente); */
 
 
         // Mostrar mensaje de bienvenida

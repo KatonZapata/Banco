@@ -1,5 +1,6 @@
 export class Cuenta {
   constructor(numeroCuenta, saldoInicial = 0) {
+    this.tipoCuenta ="generica"
     this.numeroCuenta = numeroCuenta;
     this.saldo = saldoInicial;
     this.movimientos = [];

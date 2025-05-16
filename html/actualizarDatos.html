@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Actualizar datos de Usuario</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+  <div class="registro-container">
+    <h2>Actualizar datos de Usuario</h2>
+    <form id="registroForm">
+      <div class="campo"><label for="nombre"></label>
+        <input type="text" id="nombre" required /></div>
+      <div class="campo"><label for="apellido">Apellido</label>
+        <input type="text" id="apellido" required /></div>
+      <div class="campo"><label for="direccion">Dirección</label>
+        <input type="text" id="direccion" required /></div>
+      <div class="campo"><label for="identificacion">Identificación</label>
+        <input type="text" id="identificacion" required /></div>
+      <div class="campo"><label for="usuario">Usuario</label>
+        <input type="text" id="usuario" required /></div>
+      <div class="campo"><label for="password">Contraseña</label>
+        <input type="password" id="password" required /></div>
+      <div class="campo"><label for="confirmPassword">Confirmar Contraseña</label>
+        <input type="password" id="confirmPassword" required /></div>
+      <div class="campo"><label for="tipoCuenta">Tipo de Cuenta</label>
+        <select id="tipoCuenta" required>
+          <option value="">Seleccione</option>
+          <option value="ahorros">Cuenta de Ahorros</option>
+          <option value="corriente">Cuenta Corriente</option>
+        </select>
+      </div>
+      <button type="submit">Registrar</button>
+    </form>
+    <div id="registroModal" class="modal oculto">
+      <div class="modal-contenido">
+        <h3>¡Registro exitoso!</h3>
+        <p id="mensajeRegistro"></p>
+      </div>
+    </div>
+
+
+  <script type="module" src="../actualizarDatos.js"></script>
+</body>
+</html>

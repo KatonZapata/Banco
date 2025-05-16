@@ -17,8 +17,7 @@ export function guardarEnStorage(clave, datos) {
 }
 
 export function obtenerDeStorage(clave) {
-  return JSON.parse(localStorage.getItem(clave)) || [];
-
-  
+  return JSON.parse(localStorage.getItem(clave)) || []; 
 }
+
 
