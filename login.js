@@ -24,7 +24,12 @@ document.getElementById("loginForm").addEventListener("submit",function(e){
     const cliente = clientes.find(x => x.usuario === usuario && x.password === password);
 
     if (cliente) {
-        /* sessionStorage.setItem("clienteActivo", JSON.stringify(cliente)); */
+        const clienteSinCircular = JSON.parse(JSON.stringify(cliente, (key, value) => {
+        if (key === 'propietario') return undefined;
+        return value;
+        }));
+
+        sessionStorage.setItem("clienteActivo", JSON.stringify(clienteSinCircular));
 
         // Mostrar mensaje de bienvenida
         document.getElementById("mensajeBienvenida").textContent =
