@@ -30,6 +30,8 @@ document.getElementById("loginForm").addEventListener("submit",function(e){
     if (cliente) {
 
        /*  sessionStorage.setItem("clienteActivo", JSON.stringify(cliente)); */
+        // GUARDA EL NOMBRE DE USUARIO LOGGEADO EN LOCALSTORAGE ***
+        localStorage.setItem('loggedInUsername', cliente.usuario); // Guardamos el nombre de usuario con la clave esperada por retiro.js
 
 
         // Mostrar mensaje de bienvenida
@@ -45,6 +47,7 @@ document.getElementById("loginForm").addEventListener("submit",function(e){
 
         }, 3000);
 
+        //lOGUIN DE FALLO
     }else{
         intentos ++
         if (intentos >= MAX_INTENTOS) {

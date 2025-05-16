@@ -76,6 +76,21 @@ body {
     background-color: #00cfc9;
 }
 
+#btnRegresar {
+    margin-top: 15px;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #556270;
+    color: #ffffff;
+    padding: 10px;
+    font-size: 14px;
+}
+
+#btnRegresar:hover {
+    background-color: #4a5562;
+}
+
 @media (max-width: 480px) {
     .retirar {
         padding: 20px;
@@ -94,5 +109,10 @@ body {
     .retirar form button[type="submit"] {
         font-size: 14px;
         padding: 12px;
+    }
+
+    #btnRegresar {
+         width: 60%;
+         margin-top: 10px;
     }
 }
