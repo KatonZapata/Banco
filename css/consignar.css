@@ -6,7 +6,7 @@
 
 body {
     font-family: "Segoe UI", sans-serif;
-    background: linear-gradient(135deg, #2c3e50, #3498db);
+    background: linear-gradient(135deg, #2c3e50, #3498db); /* Mismo gradiente de fondo */
     color: #ffffff;
     display: flex;
     justify-content: center;
@@ -15,9 +15,10 @@ body {
     min-height: 100vh;
 }
 
+/* Cambiamos .retirar a .consignar */
 .consignar {
-    background-color: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(5px);
+    background-color: rgba(255, 255, 255, 0.1); /* Mismo fondo translúcido */
+    backdrop-filter: blur(5px); /* Mismo efecto blur */
     padding: 30px 40px;
     border-radius: 10px;
     width: 100%;
@@ -29,12 +30,14 @@ body {
     align-items: center;
 }
 
+/* Cambiamos .retirar h2 a .consignar h2 */
 .consignar h2 {
     text-align: center;
     margin-bottom: 25px;
-    color: #00ffe1;
+    color: #00ffe1; /* Mismo color de título (cian/teal) */
 }
 
+/* Cambiamos .retirar form a .consignar form */
 .consignar form {
     display: flex;
     flex-direction: column;
@@ -42,41 +45,66 @@ body {
     width: 100%;
 }
 
+/* Cambiamos .retirar form input[type="text"] a .consignar form input[type="text"] */
 .consignar form input[type="text"] {
     padding: 12px;
     border-radius: 6px;
     border: none;
     outline: none;
-    background-color: #ffffff;
-    color: #333;
+    background-color: #ffffff; /* Fondo blanco del input */
+    color: #333; /* Color oscuro del texto del input */
     font-size: 15px;
     transition: border 0.2s ease;
     width: 100%;
     text-align: center;
 }
 
+/* Cambiamos .retirar form input[type="text"]:focus a .consignar form input[type="text"]:focus */
 .consignar form input[type="text"]:focus {
-    border: 2px solid #00ffe1;
+    border: 2px solid #00ffe1; /* Mismo borde al enfocar */
 }
 
+/* Cambiamos .retirar form button[type="submit"] a .consignar form button[type="submit"] */
+/* Esto aplicará el mismo estilo del botón de Retirar al botón de Enviar Dinero */
 .consignar form button[type="submit"] {
     width: 100%;
     padding: 14px;
-    background-color: #00ffe1;
-    color: #000000;
+    background-color: #00ffe1; /* Mismo color de fondo para el botón principal (Enviar) */
+    color: #000000; /* Mismo color de texto */
     border: none;
     border-radius: 6px;
     font-weight: bold;
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    /* text-transform: uppercase; <-- Esta línea ha sido eliminada */
 }
 
+/* Cambiamos .retirar form button[type="submit"]:hover a .consignar form button[type="submit"]:hover */
 .consignar form button[type="submit"]:hover {
-    background-color: #00cfc9;
+    background-color: #00cfc9; /* Mismo hover */
 }
 
+/* El botón #btnRegresar ya tiene un ID, no necesita cambiar la clase padre */
+#btnRegresar {
+    margin-top: 15px;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #556270; /* Mismo color de fondo */
+    color: #ffffff; /* Mismo color de texto */
+    padding: 10px;
+    font-size: 14px;
+    border: none; /* Asegura que no tenga borde por defecto */
+    border-radius: 6px; /* Bordes redondeados */
+    cursor: pointer; /* Cursor pointer */
+    transition: background-color 0.3s ease; /* Transición hover */
+}
+
+#btnRegresar:hover {
+    background-color: #4a5562; /* Mismo hover */
+}
+
+/* Cambiamos selectores en media queries */
 @media (max-width: 480px) {
     .consignar {
         padding: 20px;
@@ -96,4 +124,36 @@ body {
         font-size: 14px;
         padding: 12px;
     }
+
+    #btnRegresar {
+         width: 60%;
+         margin-top: 10px;
+    }
+    
+}
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal-contenido {
+  background-color: #ffffff;
+  color: #2c3e50;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  min-width: 300px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.oculto {
+  display: none;
 }
