@@ -81,7 +81,9 @@ setTimeout(() => {
 
 });
 //funcion de generacion de numeros de cuenta de manera aleatoria
-export function generarNumeroCuentaUnico(cuentasExistentes) {
+function generarNumeroCuentaUnico(cuentasExistentesRaw) {
+  const cuentasExistentes = Array.isArray(cuentasExistentesRaw) ? cuentasExistentesRaw : [];
+
   let numero;
   let existe = true;
   do {

@@ -1,54 +1,120 @@
+import { CuentaAhorros } from './js/clases.js/CuentaAhorros.js';
+import { CuentaCorriente } from './js/clases.js/CuentaCoriente.js'; // corregido el typo
 import { obtenerDeStorage, guardarEnStorage } from './js/util.js/localStorage.js';
-import { Cliente, CuentaAhorros, CuentaCorriente } from './js/modelo.js';
 import { reconstruirClienteConCuentas } from './js/util.js/restaurar.js';
-import { obtenerDeSession } from './js/util.js/sessionStorage.js';
-import { mostrarModalExito } from './js/util.js/modal.js';
-import { generarNumeroCuentaUnico } from './registro.js';
 
-// Obtener el cliente activo desde sessionStorage
-let clienteActivoJSON = obtenerDeSession("logeo");
-let logeado = reconstruirClienteConCuentas(clienteActivoJSON);  
-let cuenta = logeado.cuentas[0];
+// Obtener cliente logueado y reconstruirlo
+const clienteActivoJSON = sessionStorage.getItem("logeo");
+const logeado = reconstruirClienteConCuentas(JSON.parse(clienteActivoJSON));
+const cuentaOrigen = logeado.cuentas[0];
 
-doocument.getElementById("formulario").addEventListener("submit", function (e) {
-  e.preventDefault();
-  
-  // Recopilación de la información del formulario HTML en variables
-  document.getElementById("nombre").value = `${logeado.nombre}`;
-  document.getElementById("apellido").value = `${logeado.apellido}`;
-  document.getElementById("direccion").value = `${logeado.direccion}`;
+// Obtener todos los clientes
+const clientesJSON = obtenerDeStorage("clientes");
+const clientes = clientesJSON.map(reconstruirClienteConCuentas);
 
-  //activacion del checkbox
-  const toggleCheckbox = document.getElementById("toggleCuenta");
-  const seccionNuevaCuenta = document.getElementById("nuevaCuentaSection");
+// Mostrar datos actuales en el formulario
+document.getElementById("nombre").value = logeado.nombre;
+document.getElementById("apellido").value = logeado.apellido;
+document.getElementById("direccion").value = logeado.direccion;
 
-  toggleCheckbox.addEventListener("change", () => {
-  seccionNuevaCuenta.style.display = toggleCheckbox.checked ? "block" : "none";
+// Mostrar tipo y número de cuenta actual al mostrar sección nueva cuenta
+const toggleCheckbox = document.getElementById("toggleCuenta");
+const seccionCuenta = document.getElementById("nuevaCuentaSection");
+
+toggleCheckbox.addEventListener("change", () => {
+  seccionCuenta.style.display = toggleCheckbox.checked ? "block" : "none";
+
+  document.getElementById("tipoCuentaActual").textContent = cuentaOrigen.tipoCuenta;
+  document.getElementById("numeroCuentaActual").textContent = cuentaOrigen.numeroCuenta;
+
   if (toggleCheckbox.checked) {
-    // Si el checkbox está activado, mostrar la sección de nueva cuenta
-    seccionNuevaCuenta.style.display = "block";
-    // Cargar los tipos de cuenta disponibles
-    
-    cargarTiposCuentaDisponibles();
+    document.getElementById("nuevoTipoCuenta").value = 
+      cuentaOrigen.tipoCuenta === "Ahorros" ? "Corriente" : "Ahorros";
   }
-  });
-
 });
 
-function cargarTiposCuentaDisponibles() {
-  const selectTipoCuenta = document.getElementById("tipoCuenta");
-  selectTipoCuenta.innerHTML = ""; // Limpiar opciones existentes
+// Botón para agregar nueva cuenta
+document.getElementById("btnAgregarCuenta").addEventListener("click", function () {
+  if (!toggleCheckbox.checked) return;
 
-  const tiposCuentas = [
-    { nombre: "Ahorros", valor: "ahorros" },
-    { nombre: "Corriente", valor: "corriente" }
-  ];
+  const nuevoTipoCuenta = document.getElementById("nuevoTipoCuenta").value;
+  let nuevaCuenta;
 
-  tiposCuentas.forEach(tipo => {
-    const option = document.createElement("option");
-    option.value = tipo.valor;
-    option.textContent = tipo.nombre;
-    selectTipoCuenta.appendChild(option);
-  });  
+  if (nuevoTipoCuenta === "Ahorros") {
+    nuevaCuenta = new CuentaAhorros(generarNumeroCuentaUnico(obtenerDeStorage("cuentas")));
+  } else {
+    nuevaCuenta = new CuentaCorriente(generarNumeroCuentaUnico(obtenerDeStorage("cuentas")));
+  }
+
+  logeado.agregarCuenta(nuevaCuenta);
+
+  const clientesActualizados = clientes.map(c =>
+    c.usuario === logeado.usuario ? logeado : c
+  );
+
+  guardarEnStorage("clientes", clientesActualizados);
+  mostrarMensaje("¡Cuenta agregada exitosamente!", true);
+});
+
+// Botón para actualizar datos del cliente
+document.getElementById("btnGuardarCambios").addEventListener("click", function () {
+  const nombre = document.getElementById("nombre").value.trim();
+  const apellido = document.getElementById("apellido").value.trim();
+  const direccion = document.getElementById("direccion").value.trim();
+
+  if (!nombre || !apellido || !direccion) {
+    return mostrarMensaje("Por favor, completa todos los campos.", false);
+  }
+
+  // Actualizar información
+  logeado.nombre = nombre;
+  logeado.apellido = apellido;
+  logeado.direccion = direccion;
+
+  // Guardar en localStorage
+  const clientesActualizados = clientes.map(c =>
+    c.usuario === logeado.usuario ? logeado : c
+  );
+  guardarEnStorage("clientes", clientesActualizados);
+
+  // Limpiar propiedades que puedan causar error al serializar
+  logeado.cuentas.forEach(c => delete c.propietario);
+
+  // Actualizar sessionStorage
+  sessionStorage.setItem("logeo", JSON.stringify(logeado));
+
+  mostrarMensaje("¡Datos actualizados exitosamente!", true);
+});
+
+// Botón para regresar
+document.getElementById("btnRegresar").addEventListener("click", function () {
+  window.location.href = "./menuPpal.html";
+});
+
+// Generar número de cuenta único
+function generarNumeroCuentaUnico(cuentasExistentesRaw) {
+  const cuentasExistentes = Array.isArray(cuentasExistentesRaw) ? cuentasExistentesRaw : [];
+
+  let numero;
+  let existe = true;
+  do {
+    const aleatorio = Math.floor(1000000000 + Math.random() * 9000000000);
+    numero = "CU" + aleatorio;
+    existe = cuentasExistentes.some(c => c.numeroCuenta === numero);
+  } while (existe);
+  return numero;
 }
 
+// Mostrar mensaje en modal y redirigir después de unos segundos
+function mostrarMensaje(mensaje, exitoso) {
+  document.getElementById("mensajeRegistro").textContent = mensaje;
+  document.getElementById("registroModal").classList.remove("oculto");
+  document.getElementById("actualizarForm").style.display = "none";
+
+  setTimeout(() => {
+    document.getElementById("actualizarForm").reset();
+    document.getElementById("actualizarForm").style.display = "block";
+    document.getElementById("registroModal").classList.add("oculto");
+    window.location.href = "./menuPpal.html";
+  }, 4000);
+}

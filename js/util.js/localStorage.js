@@ -16,8 +16,10 @@ export function guardarEnStorage(clave, datos) {
   localStorage.setItem(clave, JSON.stringify(datosSinCircular));
 }
 
-export function obtenerDeStorage(clave) {
-  return JSON.parse(localStorage.getItem(clave)) || []; 
+ export function obtenerDeStorage(clave) {
+  const data = localStorage.getItem(clave);
+  return data ? JSON.parse(data) : [];
 }
+
 
 
